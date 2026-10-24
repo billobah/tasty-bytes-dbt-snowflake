@@ -2,9 +2,42 @@ version: 2
 
 models:
   - name: stg_orders
+    # Staging model built on the raw order_header table
+    description: "Tasty Bytes orders placed since January 1st, 2022."
     columns:
       - name: order_id
+        description: "Unique identifier of the order."
         # Primary key checks: no duplicates, no missing values
         data_tests:
           - unique
           - not_null
+
+      - name: truck_id
+        description: "Identifier of the truck that fulfilled the order."
+
+      - name: location_id
+        description: "Identifier of the location where the order was placed."
+
+      - name: customer_id
+        description: "Identifier of the customer (loyalty member), if any."
+
+      - name: order_channel
+        description: "Channel through which the order was placed."
+
+      - name: order_ts
+        description: "Timestamp of the order."
+
+      - name: order_currency
+        description: "Currency of the order amounts."
+
+      - name: order_amount
+        description: "Order amount before tax and discount."
+
+      - name: order_tax_amount
+        description: "Tax amount applied to the order."
+
+      - name: order_discount_amount
+        description: "Discount amount applied to the order."
+
+      - name: order_total
+        description: "Total amount of the order."
