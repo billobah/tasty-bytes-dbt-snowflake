@@ -11,4 +11,3 @@ SELECT
     order_discount_amount,
     order_total
 FROM {{ source('tasty_bytes_pos', 'order_header') }}
-WHERE order_ts >= '2022-01-01'
