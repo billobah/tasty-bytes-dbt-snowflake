@@ -33,3 +33,5 @@ models:
   tasty_dbt:
     staging:
       +materialized: view
+    intermediate:
+      +materialized: view
