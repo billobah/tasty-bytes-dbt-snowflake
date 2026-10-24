@@ -2,13 +2,37 @@ version: 2
 
 models:
   - name: stg_order_detail
+    # Staging model built on the raw order_detail table
+    description: "Order line items from the Tasty Bytes point-of-sale system."
     columns:
       - name: order_detail_id
-        # Primary key checks: no duplicates, no missing values
+        description: "Unique identifier of the order line."
         data_tests:
           - unique
           - not_null
 
       - name: order_id
+        description: "Identifier of the parent order."
         data_tests:
           - not_null
+
+      - name: menu_item_id
+        description: "Identifier of the menu item sold."
+
+      - name: discount_id
+        description: "Identifier of the discount applied. Currently empty in the source (all values are null)."
+
+      - name: line_number
+        description: "Position of the line within the order."
+
+      - name: quantity
+        description: "Quantity of the menu item sold."
+
+      - name: unit_price
+        description: "Price of one unit of the menu item."
+
+      - name: price
+        description: "Total price of the line."
+
+      - name: order_item_discount_amount
+        description: "Discount amount applied to the line. Currently empty in the source (all values are null)."
