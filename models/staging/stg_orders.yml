@@ -3,7 +3,7 @@ version: 2
 models:
   - name: stg_orders
     # Staging model built on the raw order_header table
-    description: "Tasty Bytes orders placed since January 1st, 2022."
+    description: "All Tasty Bytes orders (from January 2019), built on the raw order_header table."
     columns:
       - name: order_id
         description: "Unique identifier of the order."
