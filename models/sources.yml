@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: tasty_bytes_pos
+    database: TASTY_BYTES_SAMPLE_DATA
+    schema: RAW_POS
+    tables:
+      - name: country
+      - name: franchise
+      - name: location
+      - name: menu
+      - name: order_detail
+      - name: order_header
+      - name: truck
+
+  - name: tasty_bytes_customer
+    database: TASTY_BYTES_SAMPLE_DATA
+    schema: RAW_CUSTOMER
+    tables:
+      - name: customer_loyalty
