@@ -2,9 +2,32 @@ version: 2
 
 models:
   - name: stg_trucks
+    # Staging model built on the raw truck table
+    description: "Tasty Bytes food trucks, one row per truck."
     columns:
       - name: truck_id
-        # Primary key checks: no duplicates, no missing values
+        description: "Unique identifier of the truck."
         data_tests:
           - unique
           - not_null
+
+      - name: menu_type_id
+        description: "Identifier of the menu type served by the truck. Join key with the menu table."
+
+      - name: primary_city
+        description: "City where the truck mainly operates."
+
+      - name: region
+        description: "Region where the truck mainly operates."
+
+      - name: country
+        description: "Country where the truck mainly operates."
+
+      - name: franchise_flag
+        description: "Flag indicating whether the truck belongs to a franchise."
+
+      - name: ev_flag
+        description: "Flag indicating whether the truck is an electric vehicle."
+
+      - name: truck_opening_date
+        description: "Date on which the truck started operating."
