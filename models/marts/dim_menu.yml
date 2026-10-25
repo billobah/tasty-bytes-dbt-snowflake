@@ -2,9 +2,32 @@ version: 2
 
 models:
   - name: dim_menu
+    # Mart model built on stg_menu
+    description: "Menu item dimension, one row per menu item. Cost of goods is intentionally excluded."
     columns:
       - name: menu_item_id
-        # Primary key checks: no duplicates, no missing values
+        description: "Unique identifier of the menu item."
         data_tests:
           - unique
           - not_null
+
+      - name: menu_type_id
+        description: "Identifier of the menu type. Join key with the trucks."
+
+      - name: menu_item_name
+        description: "Name of the menu item."
+
+      - name: menu_type
+        description: "Type of menu the item belongs to."
+
+      - name: truck_brand_name
+        description: "Brand name of the truck serving the item."
+
+      - name: item_category
+        description: "Category of the menu item."
+
+      - name: item_subcategory
+        description: "Subcategory of the menu item."
+
+      - name: sale_price_usd
+        description: "Sale price of one item, in US dollars."
