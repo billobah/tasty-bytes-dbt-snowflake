@@ -19,8 +19,6 @@ models:
               arguments:
                 to: ref('stg_orders')
                 field: order_id
-              config:
-                severity: warn
 
       - name: menu_item_id
         description: "Identifier of the menu item sold."
