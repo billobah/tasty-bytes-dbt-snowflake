@@ -2,9 +2,26 @@ version: 2
 
 models:
   - name: stg_customers
+    # Staging model built on the raw customer_loyalty table
+    description: "Tasty Bytes loyalty program customers, one row per customer. Personal identity columns are not included."
     columns:
       - name: customer_id
-        # Primary key checks: no duplicates, no missing values
+        description: "Unique identifier of the customer."
         data_tests:
           - unique
           - not_null
+
+      - name: city
+        description: "City of the customer."
+
+      - name: country
+        description: "Country of the customer."
+
+      - name: gender
+        description: "Gender of the customer."
+
+      - name: favourite_brand
+        description: "Favourite truck brand of the customer."
+
+      - name: sign_up_date
+        description: "Date on which the customer joined the loyalty program."
