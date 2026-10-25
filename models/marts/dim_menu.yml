@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: dim_menu
+    columns:
+      - name: menu_item_id
+        # Primary key checks: no duplicates, no missing values
+        data_tests:
+          - unique
+          - not_null
