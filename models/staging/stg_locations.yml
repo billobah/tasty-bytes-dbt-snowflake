@@ -2,9 +2,23 @@ version: 2
 
 models:
   - name: stg_locations
+    # Staging model built on the raw location table
+    description: "Locations where Tasty Bytes trucks operate, one row per location."
     columns:
       - name: location_id
-        # Primary key checks: no duplicates, no missing values
+        description: "Unique identifier of the location."
         data_tests:
           - unique
           - not_null
+
+      - name: location
+        description: "Name of the location."
+
+      - name: city
+        description: "City of the location."
+
+      - name: region
+        description: "Region of the location."
+
+      - name: country
+        description: "Country of the location."
