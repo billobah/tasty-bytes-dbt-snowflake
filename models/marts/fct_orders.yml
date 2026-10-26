@@ -5,7 +5,7 @@ models:
     description: >
       Orders fact table, one row per order, built incrementally from stg_orders.
       The first load is limited by the start_date variable (default 2022-10-01);
-      run with --full-refresh and a earlier start_date to load the full history.
+      run with --full-refresh and an earlier start_date to load the full history.
       Incremental runs reload the last 3 days and merge on order_id.
     columns:
       - name: order_id
