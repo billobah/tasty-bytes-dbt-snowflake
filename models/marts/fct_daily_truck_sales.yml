@@ -2,19 +2,27 @@ version: 2
 
 models:
   - name: fct_daily_truck_sales
+    description: >
+      Daily sales by truck, one row per truck and per order date, aggregated from
+      fct_orders and joined to stg_trucks for the city. Revenue is in USD.
     columns:
       - name: order_date
+        description: Date on which the orders were taken.
         data_tests:
           - not_null
       - name: truck_id
+        description: Identifier of the truck.
         data_tests:
           - not_null
       - name: primary_city
+        description: Primary city of the truck, taken from stg_trucks.
         data_tests:
           - not_null
       - name: order_count
+        description: Number of orders taken by the truck on that date.
         data_tests:
           - not_null
       - name: total_revenue
+        description: Total revenue of the truck on that date (sum of order_total), in USD.
         data_tests:
           - not_null
