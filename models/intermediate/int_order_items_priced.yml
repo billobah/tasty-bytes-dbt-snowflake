@@ -2,11 +2,32 @@ version: 2
 
 models:
   - name: int_order_items_priced
+    description: >
+      Order lines enriched with menu item cost and gross profit, one row per
+      order line. Built from stg_order_detail and stg_menu. All amounts are in USD.
     columns:
       - name: order_detail_id
+        description: Unique identifier of the order line.
         data_tests:
           - unique
           - not_null
+      - name: order_id
+        description: Identifier of the order the line belongs to.
+      - name: menu_item_id
+        description: Identifier of the menu item sold on this line.
+      - name: line_number
+        description: Position of the line within the order.
+      - name: quantity
+        description: Number of units sold on this line.
+      - name: unit_price
+        description: Selling price of one unit, in USD.
+      - name: price
+        description: Total selling price of the line (unit price multiplied by quantity), in USD.
+      - name: unit_cost_of_goods
+        description: Cost of goods of one unit, in USD, taken from the menu.
+      - name: cost_of_goods
+        description: Total cost of goods of the line (unit cost multiplied by quantity), in USD.
       - name: gross_profit
+        description: Gross profit of the line (price minus cost of goods), in USD.
         data_tests:
           - not_null
