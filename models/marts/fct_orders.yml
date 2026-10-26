@@ -2,11 +2,38 @@ version: 2
 
 models:
   - name: fct_orders
+    description: >
+      Orders fact table, one row per order, built incrementally from stg_orders.
+      The first load is limited by the start_date variable (default 2022-10-01);
+      run with --full-refresh and a earlier start_date to load the full history.
+      Incremental runs reload the last 3 days and merge on order_id.
     columns:
       - name: order_id
+        description: Unique identifier of the order.
         data_tests:
           - unique
           - not_null
+      - name: truck_id
+        description: Identifier of the truck that took the order.
+      - name: location_id
+        description: Identifier of the location where the order was taken.
+      - name: customer_id
+        description: Identifier of the loyalty program customer, when known.
+      - name: order_channel
+        description: Channel through which the order was placed.
+      - name: order_ts
+        description: Timestamp of the order.
       - name: order_date
+        description: Date of the order, derived from order_ts.
         data_tests:
           - not_null
+      - name: order_currency
+        description: Currency of the order amounts.
+      - name: order_amount
+        description: Order amount before tax and discount.
+      - name: order_tax_amount
+        description: Tax amount of the order.
+      - name: order_discount_amount
+        description: Discount amount applied to the order.
+      - name: order_total
+        description: Total amount of the order.
