@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: int_order_items_priced
+    columns:
+      - name: order_detail_id
+        data_tests:
+          - unique
+          - not_null
+      - name: gross_profit
+        data_tests:
+          - not_null
