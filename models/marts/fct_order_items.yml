@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: fct_order_items
+    columns:
+      - name: order_detail_id
+        data_tests:
+          - unique
+          - not_null
+      - name: order_date
+        data_tests:
+          - not_null
+      - name: menu_item_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_menu')
+                field: menu_item_id
+      - name: gross_profit
+        data_tests:
+          - not_null
