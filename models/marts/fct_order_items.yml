@@ -2,21 +2,55 @@ version: 2
 
 models:
   - name: fct_order_items
+    description: >
+      Order lines fact table, one row per order line, built incrementally from
+      int_order_items_priced and fct_orders. The first load is limited by the
+      start_date variable (default 2022-10-01); run with --full-refresh and an
+      earlier start_date to load the full history. Incremental runs reload the
+      last 3 days and merge on order_detail_id. Amounts are in USD.
     columns:
       - name: order_detail_id
+        description: Unique identifier of the order line.
         data_tests:
           - unique
           - not_null
-      - name: order_date
-        data_tests:
-          - not_null
+      - name: order_id
+        description: Identifier of the order the line belongs to.
       - name: menu_item_id
+        description: Identifier of the menu item sold on this line.
         data_tests:
           - not_null
           - relationships:
               arguments:
                 to: ref('dim_menu')
                 field: menu_item_id
+      - name: line_number
+        description: Position of the line within the order.
+      - name: truck_id
+        description: Identifier of the truck that took the order.
+      - name: location_id
+        description: Identifier of the location where the order was taken.
+      - name: customer_id
+        description: Identifier of the loyalty program customer, when known.
+      - name: order_channel
+        description: Channel through which the order was placed.
+      - name: order_ts
+        description: Timestamp of the order.
+      - name: order_date
+        description: Date of the order, derived from order_ts.
+        data_tests:
+          - not_null
+      - name: quantity
+        description: Number of units sold on this line.
+      - name: unit_price
+        description: Selling price of one unit, in USD.
+      - name: price
+        description: Total selling price of the line (unit price multiplied by quantity), in USD.
+      - name: unit_cost_of_goods
+        description: Cost of goods of one unit, in USD, taken from the menu.
+      - name: cost_of_goods
+        description: Total cost of goods of the line (unit cost multiplied by quantity), in USD.
       - name: gross_profit
+        description: Gross profit of the line (price minus cost of goods), in USD.
         data_tests:
           - not_null
